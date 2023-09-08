@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace InputSystem
 {
     public static class InputState
