@@ -19,10 +19,10 @@ namespace InputSystem
 
         private void Update()
         {
-            _inputState.Horizontal = Input.GetAxis("Horizontal");
-            _inputState.Vertical = Input.GetAxis("Vertical");
-            _inputState.Fire1 = Input.GetButton("Fire1");
-            _inputState.Fire2 = Input.GetButton("Fire2");
+            _inputState.SetAxis(Axis.Horizontal,Input.GetAxis("Horizontal"));
+            _inputState.SetAxis(Axis.Vertical, Input.GetAxis("Vertical"));
+            _inputState.SetFire(Buttons.Fire1,Input.GetButton("Fire1"));
+            _inputState.SetFire(Buttons.Fire2,Input.GetButton("Fire2"));
         }
     }
 }
