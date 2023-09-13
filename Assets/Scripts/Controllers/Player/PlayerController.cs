@@ -6,7 +6,7 @@ namespace Controllers.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private IControllable _controllable;
+        private PlayerControllable _controllable;
         private InputState _inputState;
         
         [SerializeField] private GameObject defaultControllable;
@@ -14,48 +14,33 @@ namespace Controllers.Player
         private void Start()
         {
             _inputState = States.Instance.Input;
-            _controllable = GetControllable();
-        }
-
-        private IControllable GetControllable()
-        {
-            var playerControllable = States.Instance.PlayerControllable;
-            SetStartControllable(playerControllable);
             
-            return playerControllable.Controllable;
-        }
-
-        private void SetStartControllable(PlayerControllable playerControllable)
-        {
-            var controllable = defaultControllable.GetComponent<IControllable>();
-
-            if (controllable == null) return ;
-
-            playerControllable.Controllable = controllable;
+            _controllable = States.Instance.PlayerControllable;
+            _controllable.Set(defaultControllable);
         }
 
         private void FixedUpdate()
         {
             if (_controllable == null) return;
             
-            if(_inputState.Horizontal.Value != 0)
+            if(_controllable.Horizontal != null && _inputState.Horizontal.Value != 0)
             {
-                _controllable.MoveHorizontal(_inputState.Horizontal.Value);
+                _controllable.Horizontal.Control(_inputState.Horizontal.Value);
             }
             
-            if(_inputState.Vertical.Value != 0)
+            if(_controllable.Vertical != null && _inputState.Vertical.Value != 0)
             {
-                _controllable.MoveVertical(_inputState.Vertical.Value);
+                _controllable.Vertical.Control(_inputState.Vertical.Value);
             }
             
-            if(_inputState.Fire1.IsPressed)
+            if(_controllable.Fire1 != null && _inputState.Fire1.IsPressed)
             {
-                _controllable.Fire1();
+                _controllable.Fire1.Trigger();
             }
             
-            if(_inputState.Fire2.IsPressed)
+            if(_controllable.Fire1 != null && _inputState.Fire2.IsPressed)
             {
-                _controllable.Fire2();
+                _controllable.Fire2.Trigger();
             }
         }
     }

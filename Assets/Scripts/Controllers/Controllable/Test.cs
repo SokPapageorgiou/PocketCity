@@ -2,14 +2,27 @@ using UnityEngine;
 
 namespace Controllers.Controllable
 {
-    public class Test : MonoBehaviour, IControllable
+    public class Test : 
+        MonoBehaviour, IControllableHorizontally, IControllableVertically, IControllableFire1, IControllableFire2
     {
-        public void MoveHorizontal(float input) =>  Debug.Log($"Horizontal: {input}" );
-        
-        public void MoveVertical(float input) =>  Debug.Log($"Vertical: {input}");
-        
-        public void Fire1() =>  Debug.Log("Fire01");
-   
-        public void Fire2() =>  Debug.Log("Fire02");
+        void IControllableHorizontally.Control(float input)
+        {
+            Debug.Log($"Horizontal: {input}" );
+        }
+
+        void IControllableVertically.Control(float input)
+        {
+            Debug.Log($"Vertical: {input}");
+        }
+
+        void IControllableFire1.Trigger()
+        {
+            Debug.Log("Fire01");
+        }
+
+        void IControllableFire2.Trigger()
+        {
+            Debug.Log("Fire02");
+        }
     }
 }
