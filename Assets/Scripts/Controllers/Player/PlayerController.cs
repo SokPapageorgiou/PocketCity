@@ -31,29 +31,29 @@ namespace Controllers.Player
 
             if (controllable == null) return ;
 
-            playerControllable.SetControllable(controllable);
+            playerControllable.Controllable = controllable;
         }
 
         private void FixedUpdate()
         {
             if (_controllable == null) return;
             
-            if(_inputState.Horizontal != 0)
+            if(_inputState.Horizontal.Value != 0)
             {
-                _controllable.MoveHorizontal(_inputState.Horizontal);
+                _controllable.MoveHorizontal(_inputState.Horizontal.Value);
             }
             
-            if(_inputState.Vertical != 0)
+            if(_inputState.Vertical.Value != 0)
             {
-                _controllable.MoveVertical(_inputState.Vertical);
+                _controllable.MoveVertical(_inputState.Vertical.Value);
             }
             
-            if(_inputState.Fire1)
+            if(_inputState.Fire1.IsPressed)
             {
                 _controllable.Fire1();
             }
             
-            if(_inputState.Fire2)
+            if(_inputState.Fire2.IsPressed)
             {
                 _controllable.Fire2();
             }
