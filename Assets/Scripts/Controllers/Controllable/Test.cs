@@ -3,16 +3,11 @@ using UnityEngine;
 namespace Controllers.Controllable
 {
     public class Test : 
-        MonoBehaviour, IControllableHorizontally, IControllableVertically, IControllableFire1, IControllableFire2
+        MonoBehaviour, IControllableAxis, IControllableFire1, IControllableFire2
     {
-        void IControllableHorizontally.Control(float input)
+        void IControllableAxis.Control(float inputX, float inputY)
         {
-            Debug.Log($"Horizontal: {input}" );
-        }
-
-        void IControllableVertically.Control(float input)
-        {
-            Debug.Log($"Vertical: {input}");
+            Debug.Log($"Axis: {inputX}, {inputY}" );
         }
 
         void IControllableFire1.Trigger()

@@ -23,24 +23,19 @@ namespace Controllers.Player
         {
             if (_controllable == null) return;
             
-            if(_controllable.Horizontal != null && _inputState.Horizontal.Value != 0)
+            if(_inputState.Horizontal.Value != 0 && _inputState.Vertical.Value != 0)
             {
-                _controllable.Horizontal.Control(_inputState.Horizontal.Value);
+                _controllable.Axis?.Control(_inputState.Horizontal.Value, _inputState.Vertical.Value);
+            }
+
+            if(_inputState.Fire1.IsPressed)
+            {
+                _controllable.Fire1?.Trigger();
             }
             
-            if(_controllable.Vertical != null && _inputState.Vertical.Value != 0)
+            if(_inputState.Fire2.IsPressed)
             {
-                _controllable.Vertical.Control(_inputState.Vertical.Value);
-            }
-            
-            if(_controllable.Fire1 != null && _inputState.Fire1.IsPressed)
-            {
-                _controllable.Fire1.Trigger();
-            }
-            
-            if(_controllable.Fire1 != null && _inputState.Fire2.IsPressed)
-            {
-                _controllable.Fire2.Trigger();
+                _controllable.Fire2?.Trigger();
             }
         }
     }
