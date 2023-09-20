@@ -1,4 +1,3 @@
-using InputSystem;
 using UnityEngine;
 
 namespace Controllers.Player

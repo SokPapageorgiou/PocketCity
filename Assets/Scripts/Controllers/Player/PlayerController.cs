@@ -23,11 +23,8 @@ namespace Controllers.Player
         {
             if (_controllable == null) return;
             
-            if(_inputState.Horizontal.Value != 0 && _inputState.Vertical.Value != 0)
-            {
-                _controllable.Axis?.Control(_inputState.Horizontal.Value, _inputState.Vertical.Value);
-            }
-
+            _controllable.Axis?.Control(_inputState.Horizontal.Value, _inputState.Vertical.Value);
+            
             if(_inputState.Fire1.IsPressed)
             {
                 _controllable.Fire1?.Trigger();
