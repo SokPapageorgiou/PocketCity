@@ -2,6 +2,6 @@
 {
     public interface IControllableAxis
     {
-        void Control(float horizontal, float vertical);
+        void Control(bool autopilot, float horizontal, float vertical);
     }
 }

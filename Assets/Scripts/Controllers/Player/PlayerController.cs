@@ -8,7 +8,9 @@ namespace Controllers.Player
     {
         private PlayerControllable _controllable;
         private InputState _inputState;
-        
+
+        private const bool Autopilot = false;
+
         [SerializeField] private GameObject defaultControllable;
 
         private void Start()
@@ -23,7 +25,7 @@ namespace Controllers.Player
         {
             if (_controllable == null) return;
             
-            _controllable.Axis?.Control(_inputState.Horizontal.Value, _inputState.Vertical.Value);
+            _controllable.Axis?.Control(Autopilot, _inputState.Horizontal.Value, _inputState.Vertical.Value);
             
             if(_inputState.Fire1.IsPressed)
             {

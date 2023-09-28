@@ -15,8 +15,8 @@ namespace Controllers.Controllable
             _agent = GetComponent<NavMeshAgent>();
             _targetDirection = Vector3.zero;
         }
-        
-        public void Control(float horizontal, float vertical)
+
+        public void Control(bool autopilot, float horizontal, float vertical)
         {
             SetTargetDirection(horizontal, vertical);
             _agent.velocity = _targetDirection * _agent.speed;
