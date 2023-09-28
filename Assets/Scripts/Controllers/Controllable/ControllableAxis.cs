@@ -25,20 +25,20 @@ namespace Controllers.Controllable
             }
             else
             {
+                TargetDirection.Normalize();
                 RunManual();
             }
         }
         
         private void RunAutopilot()
         {
-            Agent.Move(TargetDirection);
+            Agent.SetDestination(TargetDirection);
         }
 
         private void SetTargetDirection(float horizontal, float vertical)
         {
             TargetDirection.x = horizontal;
             TargetDirection.z = vertical;
-            TargetDirection.Normalize();
         }
 
         protected abstract void RunManual();
