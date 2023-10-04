@@ -14,7 +14,7 @@ namespace InputSystem
 
         private void Start()
         {
-            _inputState = States.Instance.Input;
+            _inputState = GameState.Instance.Input;
         }
 
         private void Update()

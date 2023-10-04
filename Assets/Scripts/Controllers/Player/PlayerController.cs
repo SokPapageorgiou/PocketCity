@@ -15,9 +15,9 @@ namespace Controllers.Player
 
         private void Start()
         {
-            _inputState = States.Instance.Input;
+            _inputState = GameState.Instance.Input;
             
-            _controllable = States.Instance.PlayerControllable;
+            _controllable = GameState.Instance.PlayerControllable;
             _controllable.Set(defaultControllable);
         }
 
