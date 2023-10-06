@@ -31,10 +31,10 @@ namespace Controllers.AI
 
         private void FixedUpdate()
         {
-            RemoveDestinationReached();
+            RemoveWhenDestinationReached();
         }
 
-        private void RemoveDestinationReached()
+        private void RemoveWhenDestinationReached()
         {
             _humanoidsPositions
                 .Where(humanoid =>

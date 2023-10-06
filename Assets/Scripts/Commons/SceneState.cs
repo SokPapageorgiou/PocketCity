@@ -6,13 +6,13 @@ namespace Commons
 {
     public class SceneState : MBSingleton<SceneState>
     {
-        [SerializeField] private PoolLibrary poolLibraries;
+        [SerializeField] private PoolLibrary poolLibrary;
         
         public Pool Pool { get; private set; }
         
         protected override void LoadStates()
         {
-            Pool = new PoolFactory().Create(poolLibraries);
+            Pool = new PoolFactory().Create(poolLibrary);
         }
     }
 }
