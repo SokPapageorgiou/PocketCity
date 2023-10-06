@@ -26,7 +26,6 @@ namespace Controllers.AI
         private void Start()
         {
             _pool = SceneState.Instance.Pool;
-
             StartCoroutine(SpawnHumanoid());
         } 
 
