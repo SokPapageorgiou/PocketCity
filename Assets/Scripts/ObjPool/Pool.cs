@@ -18,42 +18,20 @@ namespace ObjPool
 
       public void Load(PoolLibrary library)
       {
-         library.Prefabs.ToList().ForEach( prefab =>
+         library.Humanoids.ToList().ForEach( humanoid =>
          {
-            Enumerable.Range(0, library.Size).ToList().ForEach(_ =>
+            Enumerable.Range(0, library.SizeHumanoids).ToList().ForEach(_ =>
             {
-               var instance = Object.Instantiate(prefab);
-               EnqueueComponent(library.Type, instance); 
+               var instance = Object.Instantiate(humanoid);
+               Deposit(PoolTypes.Humanoid, instance);
             });
          });
-      }
-
-      private void EnqueueComponent(PoolTypes poolType, GameObject gameObject)
-      {
-         gameObject.SetActive(false);
-         
-         switch (poolType)
-         {
-            case PoolTypes.Humanoid:
-               var humanoid = gameObject.GetComponent<Humanoid>();
-
-               if (humanoid == null)
-               {
-                  throw new NullReferenceException("Humanoid component not found"); 
-               }
-               
-               _poolHumanoids.Enqueue(humanoid);
-               
-               break;
-            
-            default:
-               throw new ArgumentOutOfRangeException(nameof(poolType), poolType, null);
-         }
       }
 
       public void Deposit<T>(PoolTypes poolType, T component) where T : Component
       {
          component.gameObject.SetActive(false);
+         
          switch (poolType)
          {
             case PoolTypes.Humanoid:
@@ -67,17 +45,12 @@ namespace ObjPool
       
       public T Draw<T>(PoolTypes poolType) where T : Component
       {
-         T component;
-         switch (poolType)
+         var component = poolType switch
          {
-            case PoolTypes.Humanoid:
-               component = _poolHumanoids.Dequeue() as T;
-               break;
-           
-            default:
-               throw new ArgumentOutOfRangeException(nameof(poolType), poolType, null);
-         }
-         
+            PoolTypes.Humanoid => _poolHumanoids.Dequeue() as T,
+            _ => throw new ArgumentOutOfRangeException(nameof(poolType), poolType, null)
+         };
+
          component.gameObject.SetActive(true);
 
          return component;

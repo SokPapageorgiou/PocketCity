@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Controllers.Controllable;
 using UnityEngine;
 
 namespace ObjPool
@@ -6,12 +7,11 @@ namespace ObjPool
     [CreateAssetMenu(fileName = "NewPoolLibrary", menuName = "Pool/Library", order = 0)]
     public class PoolLibrary : ScriptableObject
     {
-        [SerializeField] private PoolTypes type;
-        [SerializeField] private int size;
-        [SerializeField] private GameObject[] prefabs;
+        [Header("Humanoid Pool")]
+        [SerializeField] private int sizeHumanoids;
+        [SerializeField] private Humanoid[] humanoids;
         
-        public PoolTypes Type => type;
-        public int Size => size;
-        public IEnumerable<GameObject> Prefabs => prefabs;
+        public int SizeHumanoids => sizeHumanoids;
+        public IEnumerable<Humanoid> Humanoids => humanoids;
     }
 }

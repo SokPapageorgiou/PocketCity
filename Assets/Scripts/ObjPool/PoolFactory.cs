@@ -4,10 +4,10 @@ namespace ObjPool
 {
     public class PoolFactory
     {
-        public Pool Create(List<PoolLibrary> poolLibraries)
+        public Pool Create(PoolLibrary library)
         {
             var pool = new Pool();
-            poolLibraries.ForEach(library => pool.Load(library));
+            pool.Load(library);
             
             return pool;
         }
