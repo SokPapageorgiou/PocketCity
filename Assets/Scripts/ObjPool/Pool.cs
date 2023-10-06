@@ -1,47 +1,59 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Controllers.Controllable;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ObjPool
 {
    public class Pool 
    {
-      private readonly Dictionary<PoolTypes, Queue<GameObject>> _poolDictionary;
+      private readonly Queue<Humanoid> _poolHumanoids;
 
       public Pool()
       {
-         _poolDictionary = new Dictionary<PoolTypes, Queue<GameObject>>();
-         
-         foreach (PoolTypes poolType in System.Enum.GetValues(typeof(PoolTypes)))
-         {
-            _poolDictionary.Add(poolType, new Queue<GameObject>());
-         }
+         _poolHumanoids = new Queue<Humanoid>();
       }
 
       public void Load(PoolLibrary library)
       {
-         library.Prefabs.ToList().ForEach( prefab =>
+         library.Humanoids.ToList().ForEach( humanoid =>
          {
-            Enumerable.Range(0, library.Size).ToList().ForEach(_ =>
+            Enumerable.Range(0, library.SizeHumanoids).ToList().ForEach(_ =>
             {
-               var instance = Object.Instantiate(prefab);
-               Deposit(library.Type, instance); 
+               var instance = Object.Instantiate(humanoid);
+               Deposit(PoolTypes.Humanoid, instance);
             });
          });
       }
-      
-      public void Deposit(PoolTypes poolType, GameObject gameObject)
+
+      public void Deposit<T>(PoolTypes poolType, T component) where T : Component
       {
-         gameObject.SetActive(false);
-         _poolDictionary[poolType].Enqueue(gameObject);
-      } 
-      
-      public GameObject Draw(PoolTypes poolType)
-      {
-         var gameObject = _poolDictionary[poolType].Dequeue();
-         gameObject.SetActive(true);
+         component.gameObject.SetActive(false);
          
-         return gameObject;
+         switch (poolType)
+         {
+            case PoolTypes.Humanoid:
+               _poolHumanoids.Enqueue(component as Humanoid);
+               break;
+            
+            default:
+               throw new ArgumentOutOfRangeException(nameof(poolType), poolType, null);
+         }
+      }
+      
+      public T Draw<T>(PoolTypes poolType) where T : Component
+      {
+         var component = poolType switch
+         {
+            PoolTypes.Humanoid => _poolHumanoids.Dequeue() as T,
+            _ => throw new ArgumentOutOfRangeException(nameof(poolType), poolType, null)
+         };
+
+         component.gameObject.SetActive(true);
+
+         return component;
       } 
    }
 }

@@ -6,7 +6,7 @@ namespace Commons
 {
     public class SceneState : MBSingleton<SceneState>
     {
-        [SerializeField] private List<PoolLibrary> poolLibraries;
+        [SerializeField] private PoolLibrary poolLibraries;
         
         public Pool Pool { get; private set; }
         

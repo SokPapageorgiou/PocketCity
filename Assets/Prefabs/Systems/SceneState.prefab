@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81cddefe81804d1fb3087c411caf1bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolLibraries:
-  - {fileID: 11400000, guid: 64c11700294f2c644a90e0904ce6468b, type: 2}
+  poolLibraries: {fileID: 11400000, guid: 64c11700294f2c644a90e0904ce6468b, type: 2}
