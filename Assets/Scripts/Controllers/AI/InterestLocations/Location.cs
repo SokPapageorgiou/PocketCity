@@ -12,7 +12,7 @@ namespace Controllers.AI.InterestLocations
         [SerializeField]
         private List<AITypes> types;
         
-        private void Awake()
+        private void Start()
         {
             _locations = SceneState.Instance.Locations;
 
