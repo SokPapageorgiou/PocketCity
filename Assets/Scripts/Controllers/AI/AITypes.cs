@@ -1,4 +1,4 @@
-﻿namespace ObjPool
+﻿namespace Controllers.AI
 {
     public enum AITypes
     {
