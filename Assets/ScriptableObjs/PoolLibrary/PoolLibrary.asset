@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6ed6c46f1c46b6a371c17074930907, type: 3}
   m_Name: PoolLibrary
   m_EditorClassIdentifier: 
-  sizeHumanoids: 10
+  sizeHumanoids: 50
   humanoids:
   - {fileID: 2956465543325837499, guid: cde15b32e1743a54da746688b8ae977f, type: 3}
