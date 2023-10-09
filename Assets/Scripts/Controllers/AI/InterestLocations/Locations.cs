@@ -4,9 +4,9 @@ using ObjPool;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Controllers.AI
+namespace Controllers.AI.InterestLocations
 {
-   public class InterestPoints
+   public class Locations
    {
       private readonly List<Vector3> _humanoidPoints = new();
       
