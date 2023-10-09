@@ -76,4 +76,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b345e932584b309bb9eddb3a6749f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanoids: []
+  spawnRateSec: 1
+  distanceThreshold: 1.5
