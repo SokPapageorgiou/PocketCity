@@ -23,32 +23,32 @@ namespace ObjPool
             Enumerable.Range(0, library.SizeHumanoids).ToList().ForEach(_ =>
             {
                var instance = Object.Instantiate(humanoid);
-               Deposit(PoolTypes.Humanoid, instance);
+               Deposit(AITypes.Humanoid, instance);
             });
          });
       }
 
-      public void Deposit<T>(PoolTypes poolType, T component) where T : Component
+      public void Deposit<T>(AITypes aiType, T component) where T : Component
       {
          component.gameObject.SetActive(false);
          
-         switch (poolType)
+         switch (aiType)
          {
-            case PoolTypes.Humanoid:
+            case AITypes.Humanoid:
                _poolHumanoids.Enqueue(component as Humanoid);
                break;
             
             default:
-               throw new ArgumentOutOfRangeException(nameof(poolType), poolType, null);
+               throw new ArgumentOutOfRangeException(nameof(aiType), aiType, null);
          }
       }
       
-      public T Draw<T>(PoolTypes poolType) where T : Component
+      public T Draw<T>(AITypes aiType) where T : Component
       {
-         var component = poolType switch
+         var component = aiType switch
          {
-            PoolTypes.Humanoid => _poolHumanoids.Dequeue() as T,
-            _ => throw new ArgumentOutOfRangeException(nameof(poolType), poolType, null)
+            AITypes.Humanoid => _poolHumanoids.Dequeue() as T,
+            _ => throw new ArgumentOutOfRangeException(nameof(aiType), aiType, null)
          };
 
          component.gameObject.SetActive(true);

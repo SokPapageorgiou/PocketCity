@@ -1,6 +1,6 @@
 ﻿namespace ObjPool
 {
-    public enum PoolTypes
+    public enum AITypes
     {
         Humanoid,
     }

@@ -11,7 +11,7 @@ namespace Controllers.AI
 {
     public class HumanoidsAI : MonoBehaviour
     {
-        private const PoolTypes PoolType = PoolTypes.Humanoid;
+        private const AITypes PoolType = AITypes.Humanoid;
         private const bool AutoPilot = true;
 
         private readonly Dictionary<Humanoid, Vector3> _humanoidsPositions = new ();
