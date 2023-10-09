@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Commons;
-using ObjPool;
 using UnityEngine;
 
 namespace Controllers.AI.InterestLocations
