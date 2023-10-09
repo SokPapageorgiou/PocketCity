@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Commons;
+using Controllers.AI.InterestLocations;
 using Controllers.Controllable;
 using ObjPool;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Controllers.AI
 {
@@ -17,6 +17,7 @@ namespace Controllers.AI
         private readonly Dictionary<Humanoid, Vector3> _humanoidsPositions = new ();
         
         private Pool _pool;
+        private Locations _locations;
         
         [SerializeField]
         private uint spawnRateSec = 1;
@@ -26,6 +27,7 @@ namespace Controllers.AI
         private void Start()
         {
             _pool = SceneState.Instance.Pool;
+            _locations = SceneState.Instance.Locations;
             StartCoroutine(SpawnHumanoid());
         } 
 
@@ -50,9 +52,9 @@ namespace Controllers.AI
         private IEnumerator SpawnHumanoid()
         {
             var human = _pool.Draw<Humanoid>(PoolType);
-            var targetPosition = RandomPosition();
+            var targetPosition = _locations.GetRandomPoint(PoolType);
             
-            human.transform.position = RandomPosition();
+            human.transform.position = _locations.GetRandomPoint(PoolType);
             _humanoidsPositions.Add(human, targetPosition);
             
             human.Control(AutoPilot, targetPosition.x, targetPosition.z);
@@ -61,7 +63,5 @@ namespace Controllers.AI
 
             StartCoroutine(SpawnHumanoid());
         }
-
-        private static Vector3 RandomPosition() => new (Random.Range(-9, 9), 0, Random.Range(-9, 9));
     }
 }
