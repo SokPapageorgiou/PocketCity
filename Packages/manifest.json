@@ -1,7 +1,7 @@
 {
   "dependencies": {
+    "com.sokpapageorgiou.gridgenerator": "file:C:/Project/UnityPackages/GridGenerator",
     "com.sokpapageorgiou.pathfinder": "file:C:/Project/UnityPackages/Pathfinder",
-    "com.sokpapageorgiou.priorityheaptree": "file:C:/Project/UnityPackages/PriorityHeapTree",
     "com.unity.ai.navigation": "1.1.4",
     "com.unity.collab-proxy": "2.0.7",
     "com.unity.ide.rider": "3.0.24",
