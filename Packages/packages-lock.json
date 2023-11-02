@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.sokpapageorgiou.gridgenerator": {
-      "version": "file:C:/Project/UnityPackages/GridGenerator",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.sokpapageorgiou.pathfinder": {
       "version": "file:C:/Project/UnityPackages/Pathfinder",
       "depth": 0,
